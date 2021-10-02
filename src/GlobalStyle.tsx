@@ -1,26 +1,42 @@
 import { createGlobalStyle } from 'styled-components';
-import { web } from '@sberdevices/plasma-tokens-web/typo';
-import { light } from '@sberdevices/plasma-tokens-web/themes';
-import {
-    text, // Цвет текста
-    background, // Цвет подложки
-    gradient, // Градиент
-} from '@sberdevices/plasma-tokens-web';
+import { body1, text, background, gradientDevice } from '@sberdevices/plasma-tokens';
+import { sberBox } from '@sberdevices/plasma-tokens/typo';
+import { darkSber } from '@sberdevices/plasma-tokens/themes';
 
 const DocumentStyle = createGlobalStyle`
-    html {
-        color: ${text};
+    /* stylelint-disable-next-line selector-nested-pattern */
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+    /* stylelint-disable-next-line selector-nested-pattern */
+    body {
+        ${body1}
+        margin: 0;
+        padding: 0;
         background-color: ${background};
-        background-image: ${gradient};
+        background-image: ${gradientDevice};
+        color: ${text};
+    }
+    /* stylelint-disable-next-line selector-nested-pattern, selector-max-id */
+    #__next {
+        width: 100%;
+        height: 100%;
+    }
+    /* stylelint-disable-next-line selector-nested-pattern */
+    .focus-visible {
+        outline: 0 none;
     }
 `;
-const ThemeStyle = createGlobalStyle(light);
-const TypoStyle = createGlobalStyle(web);
+const ColorThemeStyle = createGlobalStyle(darkSber);
+const TypoStyle = createGlobalStyle(sberBox);
 
-export const GlobalStyle = () => (
-    <>
-        <DocumentStyle />
-        <ThemeStyle />
-        <TypoStyle />
-    </>
-);
+export const GlobalStyle = () => {
+    return (
+        <>
+            <DocumentStyle />
+            <ColorThemeStyle />
+            <TypoStyle />
+        </>
+    );
+};
