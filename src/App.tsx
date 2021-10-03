@@ -1,49 +1,25 @@
-import React from 'react';
-// createGlobalStyle нужен для создания глобальных стилей
-import styled, { createGlobalStyle } from 'styled-components';
+import { useCallback } from 'react';
+import { Container } from '@sberdevices/plasma-web/components/Grid';
+import { Button, Body1, Body2 } from '@sberdevices/plasma-web';
+import {Image, Header} from '@sberdevices/plasma-ui'
+import {Checi} from './Checi';
+import {Cards1} from './Cards1';
+import {Cards2} from './Cards2';
 
-// получаем значение для целевой платформы
-import { sberBox } from '@sberdevices/plasma-tokens/typo';
-// получаем стилевые объекты для нашего интерфейса
-import { body1, headline2 } from '@sberdevices/plasma-tokens';
-
-// получаем тему персонажа
-import { darkEva } from '@sberdevices/plasma-tokens';
-// получаем цвета для нашего интерфейса
-import { text, background, gradient } from '@sberdevices/plasma-tokens';
-
-const AppStyled = styled.div`
-    padding: 30px;
-    ${body1}
-`;
-
-// создаем react-компонент c глобальными стилями типографики
-const TypoScale = createGlobalStyle(sberBox);
-
-// создаем react-компонент для подложки
-const DocStyles = createGlobalStyle`
-    /* stylelint-disable-next-line selector-nested-pattern */
-    html {
-        color: ${text};
-        background-color: ${background};
-        background-image: ${gradient};
-        min-height: 100vh;
-    }
-`;
-// создаем react-компонент для персонажа
-const Theme = createGlobalStyle(darkEva);
-
-const App = () => {
+function App() {
     return (
-        <AppStyled>
-            {/* Используем глобальные react-компоненты один раз */}
-            <TypoScale />
-            <DocStyles />
-            <Theme />
+        <Container>
+        <div>
+          <Header>
+          Сладости мира
+          </Header>
+            <Body1>
+            {<Cards1 />}
+            {<Cards2 />}
+            </Body1>
+        </div>
+        </Container>
 
-            <h2 style={headline2}>Начало положеноHello Plasma Tokens</h2>
-        </AppStyled>
     );
-};
-
+}
 export default App;
